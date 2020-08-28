@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0652187F24F92DC700BCE7BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0652187E24F92DC700BCE7BB /* AppDelegate.swift */; };
 		0652188124F92DC700BCE7BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0652188024F92DC700BCE7BB /* SceneDelegate.swift */; };
-		0652188324F92DC700BCE7BB /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0652188224F92DC700BCE7BB /* ConversationsVC.swift */; };
 		0652188624F92DC700BCE7BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0652188424F92DC700BCE7BB /* Main.storyboard */; };
 		0652188824F92DCA00BCE7BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0652188724F92DCA00BCE7BB /* Assets.xcassets */; };
 		0652188B24F92DCA00BCE7BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0652188924F92DCA00BCE7BB /* LaunchScreen.storyboard */; };
@@ -19,13 +18,13 @@
 		0652189E24F9333600BCE7BB /* VideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0652189D24F9333600BCE7BB /* VideoPlayerVC.swift */; };
 		065218A024F9336F00BCE7BB /* NewConversationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0652189F24F9336F00BCE7BB /* NewConversationVC.swift */; };
 		065218A224F9338900BCE7BB /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065218A124F9338900BCE7BB /* ProfileVC.swift */; };
+		065218A424F93B6F00BCE7BB /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065218A324F93B6F00BCE7BB /* ConversationsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0652187B24F92DC700BCE7BB /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0652187E24F92DC700BCE7BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		0652188024F92DC700BCE7BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = ../SceneDelegate.swift; sourceTree = "<group>"; };
-		0652188224F92DC700BCE7BB /* ConversationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationsVC.swift; path = ../ConversationsVC.swift; sourceTree = "<group>"; };
 		0652188524F92DC700BCE7BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0652188724F92DCA00BCE7BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0652188A24F92DCA00BCE7BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +35,7 @@
 		0652189D24F9333600BCE7BB /* VideoPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
 		0652189F24F9336F00BCE7BB /* NewConversationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationVC.swift; sourceTree = "<group>"; };
 		065218A124F9338900BCE7BB /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		065218A324F93B6F00BCE7BB /* ConversationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationsVC.swift; path = /Users/ahmedezzat/Downloads/ChatApp/ChatApp/Controllers/ConversationsVC.swift; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +80,7 @@
 		0652189224F930E400BCE7BB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0652188224F92DC700BCE7BB /* ConversationsVC.swift */,
+				065218A324F93B6F00BCE7BB /* ConversationsVC.swift */,
 				0652189724F932DA00BCE7BB /* LoginVC.swift */,
 				0652189924F932F600BCE7BB /* SignUpVC.swift */,
 				0652189B24F9332800BCE7BB /* PhotoViewerVC.swift */,
@@ -198,7 +198,7 @@
 			files = (
 				065218A024F9336F00BCE7BB /* NewConversationVC.swift in Sources */,
 				0652189E24F9333600BCE7BB /* VideoPlayerVC.swift in Sources */,
-				0652188324F92DC700BCE7BB /* ConversationsVC.swift in Sources */,
+				065218A424F93B6F00BCE7BB /* ConversationsVC.swift in Sources */,
 				065218A224F9338900BCE7BB /* ProfileVC.swift in Sources */,
 				0652187F24F92DC700BCE7BB /* AppDelegate.swift in Sources */,
 				0652189824F932DA00BCE7BB /* LoginVC.swift in Sources */,
