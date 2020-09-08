@@ -5,13 +5,20 @@ final class DatabaseManager {
     
     static let shared = DatabaseManager()
     private let database = Database.database().reference()
+    
+    static func safeEmail(emailAddress: String) -> String {
+        var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
 
 }
 
 extension DatabaseManager {
     
     public func userExists(with email: String, completion: @escaping((Bool) -> Void)) {
-        database.child(email).observeSingleEvent(of: .value, with: { snapshot in
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+        database.child(safeEmail).observeSingleEvent(of: .value, with: { snapshot in
             guard snapshot.value as? String != nil else {
                 completion(false)
                 return
@@ -22,7 +29,7 @@ extension DatabaseManager {
     
     /// insert user in database
     public func createUser(with user: User) {
-        database.child(user.email).setValue([
+        database.child(user.safeEmail).setValue([
             "firstName": user.firstName,
             "lastName:": user.lastName
         ])
