@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ConversationsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        validateAuth()
+    }
+    
+    private func validateAuth() {
+        if FirebaseAuth.Auth.auth().currentUser == nil {
+            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            let loginNav = UINavigationController(rootViewController: loginVC)
+            loginNav.modalPresentationStyle = .fullScreen
+            self.present(loginNav, animated: false)
+        }
     }
 
 
