@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class ConversationsVC: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         validateAuth()
