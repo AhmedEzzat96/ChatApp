@@ -15,5 +15,6 @@ pod 'JGProgressHUD'
 pod 'RealmSwift'
 pod 'SDWebImage'
 
+  # Pods for ChatApp
 
 end

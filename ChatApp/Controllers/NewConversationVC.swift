@@ -9,22 +9,42 @@
 import UIKit
 
 class NewConversationVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noResultLabel: UILabel!
+    
+    private var searchBar: UISearchBar {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search..."
+        return searchBar
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configTableView()
+        searchBar.delegate = self
+        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .cancel,
+                                                              target: self,
+                                                              action: #selector(dismissView)),
+                                              animated: true)
+        self.navigationController?.navigationBar.topItem?.titleView = searchBar
+        searchBar.becomeFirstResponder()
+        
     }
-    */
+    
+    private func configTableView() {
+        tableView.isHidden = true
+        tableView.register(UINib(nibName: "NewConversationCell", bundle: nil), forCellReuseIdentifier: "NewConversationCell")
+    }
+    
+    @objc private func dismissView() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+}
 
+extension NewConversationVC: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
 }

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
 import GoogleSignIn
+import JGProgressHUD
 
 class LoginVC: UIViewController {
     @IBOutlet weak var logninImgView: UIImageView!
@@ -20,6 +21,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var googleLoginBtn: GIDSignInButton!
     
     private var loginObserver: NSObjectProtocol?
+    private let spinner = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +64,15 @@ class LoginVC: UIViewController {
                 return
         }
         
+        spinner.show(in: view)
+        
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) {[weak self] (authResult, error) in
             guard let strongSelf = self else {return}
+            
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
+            }
+            
             guard let result = authResult, error == nil else {
                 print(error?.localizedDescription ?? "")
                 return
