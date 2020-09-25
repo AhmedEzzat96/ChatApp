@@ -29,13 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         return true
     }
-          
+    
     func application(
         _ app: UIApplication,
         open url: URL,
         options: [UIApplication.OpenURLOptionsKey : Any] = [:]
     ) -> Bool {
-
+        
         ApplicationDelegate.shared.application(
             app,
             open: url,
@@ -44,11 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         )
         
         return GIDSignIn.sharedInstance().handle(url)
-
+        
     }
     
     
-     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         guard error == nil else {
             print(error.localizedDescription)
             return
@@ -60,13 +60,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         DatabaseManager.shared.userExists(with: email) { (exists) in
             if !exists {
-                DatabaseManager.shared.createUser(with: User(firstName: firstName, lastName: lastName, email: email))
+                let chatUser = User(firstName: firstName,
+                                    lastName: lastName,
+                                    email: email)
+                DatabaseManager.shared.createUser(with: chatUser, completion: {success in
+                    if success {
+                        
+                        if user.profile.hasImage {
+                            guard let url = user.profile.imageURL(withDimension: 200) else {
+                                return
+                            }
+                            URLSession.shared.dataTask(with: url) { (data, _, _) in
+                                guard let data = data else {
+                                    return
+                                }
+                                let fileName = chatUser.profilePicFileName
+                                StorageManager.shared.uploadProfilePic(with: data, fileName: fileName) { (result) in
+                                    switch result {
+                                    case .success(let downloadUrl):
+                                        UserDefaults.standard.set(downloadUrl, forKey: "profilePicUrl")
+                                        print(downloadUrl)
+                                    case .failure(let error):
+                                        print(error.localizedDescription)
+                                    }
+                                }
+                            }.resume()
+                        }
+                    }
+                })
             }
         }
         
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                          accessToken: authentication.accessToken)
+                                                       accessToken: authentication.accessToken)
         FirebaseAuth.Auth.auth().signIn(with: credential) { (authResult, errot) in
             guard authResult != nil, error == nil else {
                 print(error.localizedDescription)
@@ -75,12 +102,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             NotificationCenter.default.post(name: .didLogInNotification, object: nil)
         }
         
-     }
+    }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
     }
-
+    
 }
 
 

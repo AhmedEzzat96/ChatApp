@@ -47,7 +47,7 @@ class ConversationsVC: UIViewController {
         let newConversationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewConversationVC") as! NewConversationVC
         let newConvNav = UINavigationController(rootViewController: newConversationVC)
         newConvNav.modalPresentationStyle = .fullScreen
-        self.present(newConvNav, animated: false)
+        self.present(newConvNav, animated: true)
     }
     
 }

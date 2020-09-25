@@ -11,7 +11,7 @@ final class DatabaseManager {
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         return safeEmail
     }
-
+    
 }
 
 extension DatabaseManager {
@@ -23,15 +23,22 @@ extension DatabaseManager {
                 completion(false)
                 return
             }
+            completion(true)
         })
-        completion(true)
     }
     
     /// insert user in database
-    public func createUser(with user: User) {
+    public func createUser(with user: User, completion: @escaping (Bool) -> Void) {
         database.child(user.safeEmail).setValue([
             "firstName": user.firstName,
             "lastName:": user.lastName
-        ])
+            ], withCompletionBlock: {error, _ in
+                guard error == nil else {
+                    print("failed to write to database")
+                    completion(false)
+                    return
+                }
+                completion(true)
+        })
     }
 }

@@ -49,7 +49,7 @@ class SignUpVC: UIViewController {
         passwordTextField.resignFirstResponder()
         firstNameTextField.resignFirstResponder()
         lastNameTextField.resignFirstResponder()
-
+        
         guard let firstName = firstNameTextField.text,
             let lastName = lastNameTextField.text,
             let email = emailTextField.text,
@@ -65,7 +65,7 @@ class SignUpVC: UIViewController {
         
         spinner.show(in: view)
         
-        DatabaseManager.shared.userExists(with: email) {[weak self] exists in
+        DatabaseManager.shared.userExists(with: email) { [weak self] exists in
             guard let strongSelf = self else {return}
             
             DispatchQueue.main.async {
@@ -77,20 +77,38 @@ class SignUpVC: UIViewController {
                 strongSelf.alertUserLoginError(message: "Email address already exists, please try another email address.")
                 return
             }
+            
             FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) {(result, error) in
                 guard result != nil, error == nil else {
                     print(error?.localizedDescription ?? "")
                     return
                 }
-                
-                DatabaseManager.shared.createUser(with: User(firstName: firstName, lastName: lastName, email: email))
+                let chatUser = User(firstName: firstName,
+                                    lastName: lastName,
+                                    email: email)
+                DatabaseManager.shared.createUser(with: chatUser, completion: {success in
+                    if success {
+                        guard let image = strongSelf.registerImgView.image, let data = image.pngData() else {
+                            return
+                        }
+                        
+                        let fileName = chatUser.profilePicFileName
+                        StorageManager.shared.uploadProfilePic(with: data, fileName: fileName) { (result) in
+                            switch result {
+                            case .success(let downloadUrl):
+                                UserDefaults.standard.set(downloadUrl, forKey: "profilePicUrl")
+                                print(downloadUrl)
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            }
+                        }
+                    }
+                })
                 strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             }
         }
-        
-        
-        
     }
+    
     
     func alertUserLoginError(message: String = "Please enter all information to create a new account.") {
         let alert = UIAlertController(title: "Woops",
@@ -110,7 +128,7 @@ class SignUpVC: UIViewController {
 extension SignUpVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
+        
         if textField == firstNameTextField {
             lastNameTextField.becomeFirstResponder()
         }
@@ -123,13 +141,13 @@ extension SignUpVC: UITextFieldDelegate {
         else if textField == passwordTextField {
             registerBtnPressed(registerBtn)
         }
-
+        
         return true
     }
 }
 
 extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     func presentPhotoActionSheet() {
         let actionSheet = UIAlertController(title: "Profile Picture",
                                             message: "How would you like to select a picture?",
@@ -140,21 +158,21 @@ extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         actionSheet.addAction(UIAlertAction(title: "Take Photo",
                                             style: .default,
                                             handler: { [weak self] _ in
-
+                                                
                                                 self?.presentCamera()
-
+                                                
         }))
         actionSheet.addAction(UIAlertAction(title: "Chose Photo",
                                             style: .default,
                                             handler: { [weak self] _ in
-
+                                                
                                                 self?.presentPhotoPicker()
-
+                                                
         }))
-
+        
         present(actionSheet, animated: true)
     }
-
+    
     func presentCamera() {
         let vc = UIImagePickerController()
         vc.sourceType = .camera
@@ -162,7 +180,7 @@ extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         vc.allowsEditing = true
         present(vc, animated: true)
     }
-
+    
     func presentPhotoPicker() {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
@@ -170,18 +188,18 @@ extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         vc.allowsEditing = true
         present(vc, animated: true)
     }
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
-
+        
         self.registerImgView.image = selectedImage
     }
-
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-
+    
 }

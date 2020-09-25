@@ -118,7 +118,8 @@ extension LoginVC: LoginButtonDelegate {
         }
         
         let facebookRequest = FBSDKLoginKit.GraphRequest(graphPath: "me",
-                                                         parameters: ["fields": "email, name"],
+                                                         parameters: ["fields":
+                                                            "email, first_name, last_name, picture.type(large)"],
                                                          tokenString: token,
                                                          version: nil,
                                                          httpMethod: .get)
@@ -128,18 +129,41 @@ extension LoginVC: LoginButtonDelegate {
                 return
             }
             
-            guard let userName = results["name"] as? String,
-                let email = results["email"] as? String else {return}
-            let nameComponents = userName.components(separatedBy: " ")
-            guard nameComponents.count == 2 else {return}
-            let firstName = nameComponents[0]
-            let lastName = nameComponents[1]
+            guard let firstName = results["first_name"] as? String,
+                let lastName = results["last_name"] as? String,
+                let email = results["email"] as? String,
+                let picture = results["picture"] as? [String: Any],
+                let picData = picture["data"] as? [String: Any],
+                let picUrl = picData["url"] as? String else {return}
+            
             
             DatabaseManager.shared.userExists(with: email) { (exists) in
                 if !exists {
-                    DatabaseManager.shared.createUser(with: User(firstName: firstName,
-                                                                 lastName: lastName,
-                                                                 email: email))
+                    let chatUser = User(firstName: firstName,
+                                        lastName: lastName,
+                                        email: email)
+                    DatabaseManager.shared.createUser(with: chatUser, completion: {success in
+                        if success {
+                            guard let url = URL(string: picUrl) else {
+                                print("Failed to get data from facebook")
+                                return
+                            }
+                            URLSession.shared.dataTask(with: url) { (data, _, _) in
+                                guard let data = data else {return}
+                                print("data is uploading from facebook ...")
+                                let fileName = chatUser.profilePicFileName
+                                StorageManager.shared.uploadProfilePic(with: data, fileName: fileName) { (result) in
+                                    switch result {
+                                    case .success(let downloadUrl):
+                                        UserDefaults.standard.set(downloadUrl, forKey: "profilePicUrl")
+                                        print(downloadUrl)
+                                    case .failure(let error):
+                                        print(error.localizedDescription)
+                                    }
+                                }
+                            }.resume()
+                        }
+                    })
                 }
             }
             
