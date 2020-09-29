@@ -1,15 +1,9 @@
-//
-//  NewConversationCell.swift
-//  ChatApp
-//
-//  Created by Ahmed Ezzat on 9/23/20.
-//  Copyright © 2020 IDEAcademy. All rights reserved.
-//
 
 import UIKit
 
 class NewConversationCell: UITableViewCell {
-
+    @IBOutlet weak var userNameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

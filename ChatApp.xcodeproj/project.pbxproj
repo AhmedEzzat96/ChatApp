@@ -26,6 +26,8 @@
 		065218A224F9338900BCE7BB /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065218A124F9338900BCE7BB /* ProfileVC.swift */; };
 		065218A424F93B6F00BCE7BB /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065218A324F93B6F00BCE7BB /* ConversationsVC.swift */; };
 		06608622250830480098BBF4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06608621250830480098BBF4 /* Constants.swift */; };
+		067622D625215811004509DA /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067622D525215811004509DA /* Conversation.swift */; };
+		06BA25EF2522C96C00C4BD87 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BA25EE2522C96C00C4BD87 /* Media.swift */; };
 		06E16EE9251AE31900FF9387 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E16EE8251AE31900FF9387 /* Message.swift */; };
 		06E16EEB251AE32100FF9387 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E16EEA251AE32100FF9387 /* Sender.swift */; };
 		06E16EEF251AEFD100FF9387 /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E16EED251AEFD100FF9387 /* NewConversationCell.swift */; };
@@ -58,6 +60,8 @@
 		065218A124F9338900BCE7BB /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		065218A324F93B6F00BCE7BB /* ConversationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationsVC.swift; path = /Users/ahmedezzat/Downloads/ChatApp/ChatApp/Controllers/ConversationsVC.swift; sourceTree = "<absolute>"; };
 		06608621250830480098BBF4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		067622D525215811004509DA /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		06BA25EE2522C96C00C4BD87 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		06E16EE8251AE31900FF9387 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		06E16EEA251AE32100FF9387 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		06E16EED251AEFD100FF9387 /* NewConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationCell.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				062869FA2507E83E00C073D9 /* User.swift */,
 				06E16EE8251AE31900FF9387 /* Message.swift */,
 				06E16EEA251AE32100FF9387 /* Sender.swift */,
+				067622D525215811004509DA /* Conversation.swift */,
+				06BA25EE2522C96C00C4BD87 /* Media.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -362,12 +368,14 @@
 			files = (
 				065218A024F9336F00BCE7BB /* NewConversationVC.swift in Sources */,
 				0652189E24F9333600BCE7BB /* VideoPlayerVC.swift in Sources */,
+				06BA25EF2522C96C00C4BD87 /* Media.swift in Sources */,
 				06E16EEB251AE32100FF9387 /* Sender.swift in Sources */,
 				062869F92507E5C000C073D9 /* DatabaseManager.swift in Sources */,
 				065218A424F93B6F00BCE7BB /* ConversationsVC.swift in Sources */,
 				065218A224F9338900BCE7BB /* ProfileVC.swift in Sources */,
 				0652187F24F92DC700BCE7BB /* AppDelegate.swift in Sources */,
 				06E16EEF251AEFD100FF9387 /* NewConversationCell.swift in Sources */,
+				067622D625215811004509DA /* Conversation.swift in Sources */,
 				06F593EF25191117002536DC /* ConversationCell.swift in Sources */,
 				064CE27E251D88C600345742 /* StorageManager.swift in Sources */,
 				0652189824F932DA00BCE7BB /* LoginVC.swift in Sources */,

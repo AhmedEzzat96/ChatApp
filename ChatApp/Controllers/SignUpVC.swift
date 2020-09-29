@@ -63,6 +63,8 @@ class SignUpVC: UIViewController {
                 return
         }
         
+        UserDefaults.standard.set(email, forKey: "email")
+        
         spinner.show(in: view)
         
         DatabaseManager.shared.userExists(with: email) { [weak self] exists in

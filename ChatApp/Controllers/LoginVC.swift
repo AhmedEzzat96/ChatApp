@@ -78,6 +78,24 @@ class LoginVC: UIViewController {
                 return
             }
             let user = result.user
+            
+            let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+            DatabaseManager.shared.getDataForUser(with: safeEmail) { (result) in
+                switch result {
+                    
+                case .success(let data):
+                    guard let userData = data as? [String: Any],
+                        let firstName = userData["firstName"] as? String,
+                        let lastName = userData["lastName"] as? String
+                        else {
+                            return
+                    }
+                    UserDefaults.standard.set(("\(firstName) \(lastName)"), forKey: "name")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            UserDefaults.standard.set(email, forKey: "email")
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             print("Logged in user: \(user)")
         }
@@ -136,7 +154,8 @@ extension LoginVC: LoginButtonDelegate {
                 let picData = picture["data"] as? [String: Any],
                 let picUrl = picData["url"] as? String else {return}
             
-            
+            UserDefaults.standard.set(email, forKey: "email")
+            UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
             DatabaseManager.shared.userExists(with: email) { (exists) in
                 if !exists {
                     let chatUser = User(firstName: firstName,
