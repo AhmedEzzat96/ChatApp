@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>851795653678-icmsr6niucfidtqtara8r8lae9c21nkf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.851795653678-icmsr6niucfidtqtara8r8lae9c21nkf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAxqZ7uzJmPunBh7d6vkAxoiJoaupgwclw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>851795653678</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>IDEAcademy.ChatApp</string>
+	<key>PROJECT_ID</key>
+	<string>chatapp-f4fc7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chatapp-f4fc7.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:851795653678:ios:45e3b412e713b43018dbbf</string>
+	<key>DATABASE_URL</key>
+	<string>https://chatapp-f4fc7.firebaseio.com</string>
+</dict>
+</plist>

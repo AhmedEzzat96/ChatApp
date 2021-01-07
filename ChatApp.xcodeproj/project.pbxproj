@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		06225BC825278FC1001101B4 /* UserEmailProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06225BC625278FC1001101B4 /* UserEmailProfileCell.swift */; };
 		06225BC925278FC1001101B4 /* UserEmailProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06225BC725278FC1001101B4 /* UserEmailProfileCell.xib */; };
-		062869F62507D95B00C073D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 062869F52507D95B00C073D9 /* GoogleService-Info.plist */; };
 		062869F92507E5C000C073D9 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062869F82507E5C000C073D9 /* DatabaseManager.swift */; };
 		062869FB2507E83E00C073D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062869FA2507E83E00C073D9 /* User.swift */; };
 		062869FE2507FD8400C073D9 /* LogOutProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062869FC2507FD8400C073D9 /* LogOutProfileCell.swift */; };
 		062869FF2507FD8400C073D9 /* LogOutProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 062869FD2507FD8400C073D9 /* LogOutProfileCell.xib */; };
+		063AC43425A7859300DAD4BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 063AC43325A7859300DAD4BA /* GoogleService-Info.plist */; };
 		064CE27E251D88C600345742 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064CE27D251D88C600345742 /* StorageManager.swift */; };
 		0652187F24F92DC700BCE7BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0652187E24F92DC700BCE7BB /* AppDelegate.swift */; };
 		0652188124F92DC700BCE7BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0652188024F92DC700BCE7BB /* SceneDelegate.swift */; };
@@ -47,11 +47,11 @@
 /* Begin PBXFileReference section */
 		06225BC625278FC1001101B4 /* UserEmailProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEmailProfileCell.swift; sourceTree = "<group>"; };
 		06225BC725278FC1001101B4 /* UserEmailProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserEmailProfileCell.xib; sourceTree = "<group>"; };
-		062869F52507D95B00C073D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		062869F82507E5C000C073D9 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		062869FA2507E83E00C073D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		062869FC2507FD8400C073D9 /* LogOutProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutProfileCell.swift; sourceTree = "<group>"; };
 		062869FD2507FD8400C073D9 /* LogOutProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogOutProfileCell.xib; sourceTree = "<group>"; };
+		063AC43325A7859300DAD4BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		064CE27D251D88C600345742 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0652187B24F92DC700BCE7BB /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0652187E24F92DC700BCE7BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +120,23 @@
 			path = ProfileCell;
 			sourceTree = "<group>";
 		};
+		063AC43525A7861D00DAD4BA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				06608621250830480098BBF4 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		063AC43625A7863600DAD4BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0652189624F9314200BCE7BB /* Storyboards */,
+				0652188724F92DCA00BCE7BB /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0652187224F92DC700BCE7BB = {
 			isa = PBXGroup;
 			children = (
@@ -141,13 +158,15 @@
 		0652187D24F92DC700BCE7BB /* ChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				0652189524F930FE00BCE7BB /* Shared */,
 				062869F72507E5A900C073D9 /* Managers */,
-				0652189524F930FE00BCE7BB /* Resources */,
+				063AC43525A7861D00DAD4BA /* Utilities */,
 				0652189424F930F800BCE7BB /* Models */,
 				0652189324F930F000BCE7BB /* Views */,
 				0652189224F930E400BCE7BB /* Controllers */,
+				063AC43625A7863600DAD4BA /* Resources */,
 				0652188C24F92DCA00BCE7BB /* Info.plist */,
-				062869F52507D95B00C073D9 /* GoogleService-Info.plist */,
+				063AC43325A7859300DAD4BA /* GoogleService-Info.plist */,
 			);
 			path = ChatApp;
 			sourceTree = "<group>";
@@ -173,8 +192,6 @@
 				06E16EEC251AEFAE00FF9387 /* NewConversationCell */,
 				06F593EC251910F8002536DC /* ConversationCell */,
 				06286A002507FD8B00C073D9 /* ProfileCell */,
-				0652189624F9314200BCE7BB /* Storyboards */,
-				0652188724F92DCA00BCE7BB /* Assets.xcassets */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -193,14 +210,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		0652189524F930FE00BCE7BB /* Resources */ = {
+		0652189524F930FE00BCE7BB /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				0652187E24F92DC700BCE7BB /* AppDelegate.swift */,
 				0652188024F92DC700BCE7BB /* SceneDelegate.swift */,
-				06608621250830480098BBF4 /* Constants.swift */,
 			);
-			path = Resources;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		0652189624F9314200BCE7BB /* Storyboards */ = {
@@ -311,9 +327,9 @@
 			files = (
 				06225BC925278FC1001101B4 /* UserEmailProfileCell.xib in Resources */,
 				06F593F025191117002536DC /* ConversationCell.xib in Resources */,
+				063AC43425A7859300DAD4BA /* GoogleService-Info.plist in Resources */,
 				06ABA8B525278BAA009307C9 /* UserNameProfileCell.xib in Resources */,
 				0652188B24F92DCA00BCE7BB /* LaunchScreen.storyboard in Resources */,
-				062869F62507D95B00C073D9 /* GoogleService-Info.plist in Resources */,
 				0652188824F92DCA00BCE7BB /* Assets.xcassets in Resources */,
 				0652188624F92DC700BCE7BB /* Main.storyboard in Resources */,
 				06E16EF0251AEFD100FF9387 /* NewConversationCell.xib in Resources */,
