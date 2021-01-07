@@ -15,7 +15,7 @@ class PhotoViewerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .black
         imgView.sd_setImage(with: imgUrl, completed: nil)

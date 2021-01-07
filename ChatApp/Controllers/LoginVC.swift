@@ -25,7 +25,7 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginObserver = NotificationCenter.default.addObserver(forName: .didLogInNotification, object: nil, queue: .main) {[weak self] (_) in
+        loginObserver = NotificationCenter.default.addObserver(forName: .didLogInNotification, object: nil, queue: .main) { [weak self] (_) in
             guard let strongSelf = self else {
                 return
             }
@@ -95,7 +95,7 @@ class LoginVC: UIViewController {
                     print(error.localizedDescription)
                 }
             }
-            UserDefaults.standard.set(email, forKey: "email")
+            
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             print("Logged in user: \(user)")
         }
@@ -113,7 +113,7 @@ class LoginVC: UIViewController {
     @IBAction func registerBtnPressed(_ sender: UIBarButtonItem) {
         let signupVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
         signupVC.title = "Create Account"
-        self.navigationController?.pushViewController(signupVC, animated: true)
+        navigationController?.pushViewController(signupVC, animated: true)
     }
     
 }

@@ -4,8 +4,8 @@ import Foundation
 struct Conversation {
     let id: String
     let name: String
-    let latestMsg: LatestMsg
     let otherUserEmail: String
+    let latestMsg: LatestMsg
 }
 
 struct LatestMsg {

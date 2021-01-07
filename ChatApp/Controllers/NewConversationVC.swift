@@ -11,14 +11,14 @@ import JGProgressHUD
 
 class NewConversationVC: UIViewController {
     
-    public var completion: (([String: String]) -> (Void))?
+    public var completion: ((SearchResult) -> Void)?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noResultLabel: UILabel!
     
     private let spinner = JGProgressHUD(style: .dark)
-    private var usersArr = [[String: String]]()
-    private var resultsArr = [[String: String]]()
+    private var results = [SearchResult]()
+    private var users = [[String: String]]()
     
     private var hasFetched = false
     
@@ -31,12 +31,12 @@ class NewConversationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configTableView()
-        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .cancel,
+        searchBar.delegate = self
+        navigationController?.navigationBar.topItem?.titleView = searchBar
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .cancel,
                                                               target: self,
                                                               action: #selector(dismissView)),
                                               animated: true)
-        self.navigationController?.navigationBar.topItem?.titleView = searchBar
-        self.searchBar.delegate = self
         searchBar.becomeFirstResponder()
         
     }
@@ -44,35 +44,39 @@ class NewConversationVC: UIViewController {
     private func configTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.isHidden = true
         tableView.register(UINib(nibName: "NewConversationCell", bundle: nil), forCellReuseIdentifier: "NewConversationCell")
     }
     
     @objc private func dismissView() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 }
 
 extension NewConversationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultsArr.count
+        return results.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewConversationCell", for: indexPath) as? NewConversationCell else {
             return UITableViewCell()
         }
-        cell.userNameLabel.text = resultsArr[indexPath.row]["name"]
+        cell.configCell(conversation: results[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let targetUser = resultsArr[indexPath.row]
-        self.dismiss(animated: true) { [weak self] in
-            self?.completion?(targetUser)
-        }
+        
+        let targetUserData = results[indexPath.row]
+        dismiss(animated: true, completion: { [weak self] in
+            self?.completion?(targetUserData)
+        })
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
 }
@@ -85,16 +89,18 @@ extension NewConversationVC: UISearchBarDelegate {
         }
         
         searchBar.resignFirstResponder()
-        self.resultsArr.removeAll()
+        
+        results.removeAll()
         spinner.show(in: view)
-        self.findUsers(text: text)
+        
+        findUsers(text: text)
     }
     
     func findUsers(text: String) {
         // check if array have firebase results
         if hasFetched {
             // if it does: filter
-            self.filterUsers(with: text)
+            filterUsers(with: text)
             
         } else {
             // if not, fetch then filter
@@ -102,39 +108,54 @@ extension NewConversationVC: UISearchBarDelegate {
                 switch result {
                 case .success(let usersCollection):
                     self?.hasFetched = true
-                    self?.usersArr = usersCollection
+                    self?.users = usersCollection
                     self?.filterUsers(with: text)
                 case.failure(let error):
-                    print(error.localizedDescription)
+                    print("failed to get users \(error)")
                 }
             }
         }
     }
     
     func filterUsers(with term: String) {
-        guard hasFetched else {
+        guard let currentUserEmail = UserDefaults.standard.value(forKey: "email") as? String, hasFetched else {
             return
         }
-        self.spinner.dismiss()
+
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: currentUserEmail)
+        print(safeEmail)
+        spinner.dismiss()
         
-        let results: [[String: String]] = self.usersArr.filter({
+        let results: [SearchResult] = users.filter({
+            guard let email = $0["safeEmail"], email != safeEmail else {
+                return false
+            }
             guard let name = $0["name"]?.lowercased() else {
                 return false
             }
             return name.hasPrefix(term.lowercased())
+        }).compactMap({
+            
+            guard let email = $0["safeEmail"],
+                let name = $0["name"] else {
+                    return nil
+            }
+            return SearchResult(name: name, email: email)
         })
-        self.resultsArr = results
+        print(results)
+        self.results = results
+        
         updateUI()
     }
     
     func updateUI() {
-        if resultsArr.isEmpty {
-            self.noResultLabel.isHidden = false
-            self.tableView.isHidden = true
+        if results.isEmpty {
+            noResultLabel.isHidden = false
+            tableView.isHidden = true
         } else {
-            self.noResultLabel.isHidden = true
-            self.tableView.isHidden = false
-            self.tableView.reloadData()
+            noResultLabel.isHidden = true
+            tableView.isHidden = false
+            tableView.reloadData()
         }
     }
 }

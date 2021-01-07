@@ -63,16 +63,11 @@ class SignUpVC: UIViewController {
                 return
         }
         
-        UserDefaults.standard.set(email, forKey: "email")
-        
         spinner.show(in: view)
         
         DatabaseManager.shared.userExists(with: email) { [weak self] exists in
             guard let strongSelf = self else {return}
             
-            DispatchQueue.main.async {
-                strongSelf.spinner.dismiss()
-            }
             
             guard !exists else {
                 // alert for user already Exists
@@ -85,6 +80,10 @@ class SignUpVC: UIViewController {
                     print(error?.localizedDescription ?? "")
                     return
                 }
+                
+                UserDefaults.standard.setValue(email, forKey: "email")
+                UserDefaults.standard.setValue("\(firstName) \(lastName)", forKey: "name")
+                
                 let chatUser = User(firstName: firstName,
                                     lastName: lastName,
                                     email: email)
@@ -99,6 +98,9 @@ class SignUpVC: UIViewController {
                             switch result {
                             case .success(let downloadUrl):
                                 UserDefaults.standard.set(downloadUrl, forKey: "profilePicUrl")
+                                DispatchQueue.main.async {
+                                    strongSelf.spinner.dismiss()
+                                }
                                 print(downloadUrl)
                             case .failure(let error):
                                 print(error.localizedDescription)
@@ -197,7 +199,7 @@ extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             return
         }
         
-        self.registerImgView.image = selectedImage
+        registerImgView.image = selectedImage
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

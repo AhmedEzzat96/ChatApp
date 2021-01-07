@@ -29,7 +29,7 @@
         <scene sceneID="r58-Hx-4BG">
             <objects>
                 <navigationController id="Qx4-Fq-XGC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="gkp-pA-3Bf"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="gkp-pA-3Bf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="fSO-hZ-Juz">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -137,6 +137,7 @@
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fIU-dI-2l1">
                                 <rect key="frame" x="52" y="341.5" width="310.5" height="52"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                             </textField>
@@ -153,6 +154,7 @@
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2I4-YU-sRW">
                                 <rect key="frame" x="52" y="279.5" width="310.5" height="52"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="e6L-2t-5oz"/>
                                 </constraints>
@@ -235,6 +237,7 @@
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AXF-oZ-OJb">
                                 <rect key="frame" x="52" y="264" width="310.5" height="52"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="orl-7Q-WUa"/>
                                 </constraints>
@@ -243,16 +246,19 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JdV-Ul-vBj">
                                 <rect key="frame" x="52" y="326" width="310.5" height="52"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kMn-KL-TXK">
                                 <rect key="frame" x="52" y="388" width="310.5" height="52"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="continue"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HhY-SE-tWc">
                                 <rect key="frame" x="52" y="450" width="310.5" height="52"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
@@ -317,24 +323,39 @@
             </objects>
             <point key="canvasLocation" x="-799" y="1142"/>
         </scene>
-        <!--ChatVC-->
-        <scene sceneID="RtZ-df-kzc">
+        <!--Location PickerVC-->
+        <scene sceneID="p81-TS-AJX">
             <objects>
-                <viewController storyboardIdentifier="ChatVC" id="Quj-yO-v1p" customClass="ChatVC" customModule="ChatApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="foJ-HI-Jnz">
+                <viewController storyboardIdentifier="LocationPickerVC" id="6SH-Qb-zUA" customClass="LocationPickerVC" customModule="ChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oSJ-vg-2AM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="tbg-ST-1Mp"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="H3N-2I-t0i">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="H3N-2I-t0i" secondAttribute="bottom" id="48E-U0-oLU"/>
+                            <constraint firstItem="BgH-m6-6oP" firstAttribute="trailing" secondItem="H3N-2I-t0i" secondAttribute="trailing" id="QU1-QM-mYB"/>
+                            <constraint firstItem="H3N-2I-t0i" firstAttribute="leading" secondItem="BgH-m6-6oP" secondAttribute="leading" id="kSx-TI-n3n"/>
+                            <constraint firstItem="H3N-2I-t0i" firstAttribute="top" secondItem="BgH-m6-6oP" secondAttribute="top" id="xg2-tG-5Bs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BgH-m6-6oP"/>
                     </view>
+                    <connections>
+                        <outlet property="map" destination="H3N-2I-t0i" id="emv-Ka-fHH"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zZ2-D9-Yvq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x4h-Hi-8k9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-149" y="1142"/>
+            <point key="canvasLocation" x="-158" y="1142"/>
         </scene>
         <!--New ConversationVC-->
         <scene sceneID="FZs-G2-PHq">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJ9-GH-UOW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="NewConversationVC" id="Y97-t7-FL4" customClass="NewConversationVC" customModule="ChatApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TW1-HO-NCz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -346,7 +367,7 @@
                                 <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ni6-y6-oqF">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ni6-y6-oqF">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
@@ -371,7 +392,6 @@
                         <outlet property="tableView" destination="ni6-y6-oqF" id="7Qw-1D-l9v"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oJ9-GH-UOW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="487" y="1142"/>
         </scene>
@@ -408,7 +428,7 @@
         <scene sceneID="B7G-J9-xIo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XSA-Ua-akf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" id="Fc6-Ky-nVK"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="message" catalog="system" id="Fc6-Ky-nVK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="WqC-bU-f9K">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -426,5 +446,7 @@
     </scenes>
     <resources>
         <image name="loginLogo" width="512" height="512"/>
+        <image name="message" catalog="system" width="128" height="113"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>
